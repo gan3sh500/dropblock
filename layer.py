@@ -18,7 +18,7 @@ class DropBlock(torch.nn.module):
             return x
         if self.gamma is None:
             self.gamma = self.calculate_gamma(x)
-        p = torch.ones_like(x) * (1 - self.gamma)
+        p = torch.ones_like(x) * self.gamma
         mask = 1 - torch.nn.functional.max_pool2d(torch.bernoulli(p),
                                                   self.kernel_size,
                                                   self.stride,
